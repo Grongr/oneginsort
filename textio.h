@@ -58,7 +58,7 @@ FileLog input(char** buffer, const char* input_file);
  * @param [out] <count>  count of strings in buffer
  * @param [in]  <ch>     delimeter of strings in <buffer>
  */
-string* parser(char* buffer, int* count, char ch);
+string* parser(char* buffer, size_t* count, char ch);
 
 /*!
  * @brief This func clears the <filename> file
@@ -91,12 +91,23 @@ FileLog get_file_names(char* input, char* output);
  *
  * @param [in]  <text>    pointer to the array of strings
  * @param [in]  <output>  name of ouput file
+ * @param [in]  <count>   count of strings in text
  *
  * @return code of error or 0 if all was ok
  *         (see FileLog enum for more details)
  *
  * @version 0.1
  */
-FileLog write_result(string* text, const char* output);
+FileLog write_result(string* text, int count, const char* output);
+
+/*!
+ * @brief Destructor of <buffer> and <text>
+ *
+ * Frees <buffer> valuable and <text> valuable
+ *
+ * @param [in] <text>    array of strings to free
+ * @param [in] <buffer>  cstring buffer to free
+ */
+void free_text_buf(string* text, char* buf);
 
 #endif // TEXTIO_INClUDED
