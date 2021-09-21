@@ -71,6 +71,11 @@ string* parser(char* buffer, size_t* count, char ch) {
         while (*iter == ch) ++iter;
     }
 
+    for (int i = 0; i < *count; ++i) {
+
+        *((text + i)->ptr + (text + i)->length) = '\0';
+    }
+
     return text;
 }
 
@@ -78,15 +83,10 @@ FileLog write_result(string* text, int count, const char* output) {
 
     assert(text != NULL);
 
-    FILE* fout = fopen(output, "w");
+    FILE* fout = fopen(output, "a");
 
     if (fout == NULL)
         return CANNOT_WRITE_FILE;
-
-    for (int i = 0; i < count; ++i) {
-
-        *((text + i)->ptr + (text + i)->length) = '\0';
-    }
 
     for (int i = 0; i < count; ++i) {
 
@@ -95,8 +95,7 @@ FileLog write_result(string* text, int count, const char* output) {
     }
 
     // To separate different texts
-    fputs("", fout);
-    fputs("", fout);
+    fputs("\n\n", fout);
 
     fclose(fout);
     return FILE_OK;

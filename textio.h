@@ -57,6 +57,8 @@ FileLog input(char** buffer, const char* input_file);
  * @param [in]  <buffer> pointer to the beginning of buffer
  * @param [out] <count>  count of strings in buffer
  * @param [in]  <ch>     delimeter of strings in <buffer>
+ *
+ * @version 0.1
  */
 string* parser(char* buffer, size_t* count, char ch);
 
@@ -68,6 +70,8 @@ string* parser(char* buffer, size_t* count, char ch);
  * to get useful output)
  *
  * @param [in] <filename> the name of file to clear
+ *
+ * @version 0.1
  */
 FileLog clear(const char* filename);
 
@@ -107,6 +111,8 @@ FileLog write_result(string* text, int count, const char* output);
  *
  * @param [in] <text>    array of strings to free
  * @param [in] <buffer>  cstring buffer to free
+ *
+ * @version 0.1
  */
 void free_text_buf(string* text, char* buf);
 

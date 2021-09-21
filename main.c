@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "textio.h"
 #include "my_qsort.h"
@@ -23,7 +24,7 @@ int main(void) {
     /* CODE_CHECK(get_file_names(input_file, output_file), FILE_OK); */
 
     input(&buffer, input_file);
-    /* CODE_CHECK(input(&buffer, input_file), FILE_OK); */
+    CODE_CHECK(input(&buffer, input_file), FILE_OK);
 
     size_t count = 0;
 
@@ -31,11 +32,18 @@ int main(void) {
 
     CODE_CHECK(clear(output_file), FILE_OK);
 
-    /* my_qsort(text, count, (int(*) (const void*, const void*))forward_cmp); */
+    my_qsort(text, 0, count - 1,
+            (int(*) (const string*, const string*))forward_cmp);
 
-    /* CODE_CHECK(write_result(text, count, output_file), FILE_OK); */
+    CODE_CHECK(write_result(text, count, output_file), FILE_OK);
 
-    /* qsort(text, 0, count, (int(*) (const void*, const void*))reversed_cmp); */
+    qsort(text, count, sizeof(string),
+         (int(*) (const void*, const void*))reversed_cmp);
+
+    CODE_CHECK(write_result(text, count, output_file), FILE_OK);
+
+    qsort(text, count, sizeof(string),
+         (int(*) (const void*, const void*))ptr_cmp);
 
     CODE_CHECK(write_result(text, count, output_file), FILE_OK);
 

@@ -8,7 +8,9 @@ set(MYCOMPILE_FLAGS "${MYCOMPILE_FLAGS} -Warray-bounds -Wdiv-by-zero -Wdouble-pr
 #set(MYCOMPILE_FLAGS "${MYCOMPILE_FLAGS} -DNDEBUG")
 
 add_executable(main main.c
-                    textio.c)
+                    textio.c
+                    comparators.c
+                    my_qsort.c)
 
 add_definitions(${MYCOMPILE_FLAGS})
 target_link_libraries(main m)
