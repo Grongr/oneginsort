@@ -145,3 +145,62 @@ void free_text_buf(string* text, char* buf) {
     free(text);
     free(buf);
 }
+
+FileLog file_preparation(char* buffer) {
+
+    const char* ignore = " \t";
+
+    char* l    = buffer;
+    char* r    = buffer;
+
+    r += strspn(r, ignore);
+    l = r;
+
+    while (*r != '\0') {
+
+        while (!strspn(r, ignore) && *r != '\0') ++r;
+
+        l = r - 1;
+        r += strspn(r, ignore);
+
+        if (*l == '\n' || *r == '\n') {
+
+            for (; l < r; ++l)
+                *l = '\n';
+        }
+    }
+
+    r = buffer;
+
+    while ( (r = strchr(r, '\t')) != NULL )
+        *r = ' ';
+
+    return FILE_OK;
+}
+
+FileLog preparation_write(const char *buffer, const char* output) {
+
+    FILE* fout = fopen(output, "w");
+    if (fout == NULL)
+        return CANNOT_WRITE_FILE;
+
+    while (*buffer != '\0') {
+
+        if (*buffer == ' ') {
+
+            putc(*buffer, fout);
+            buffer += strspn(buffer, " \t");
+        } else if (*buffer == '\n') {
+        
+            putc(*buffer, fout);
+            buffer += strspn(buffer, "\n");
+        } else {
+
+            putc(*buffer, fout);
+            ++buffer;
+        }
+    }
+
+    fclose(fout);
+    return FILE_OK;
+}

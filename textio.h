@@ -116,4 +116,27 @@ FileLog write_result(string* text, int count, const char* output);
  */
 void free_text_buf(string* text, char* buf);
 
+/*!
+ * @brief Func to prepare file to processing it
+ *
+ * It deletes all useless spaces, tabs and '\n'
+ * symbols
+ *
+ * @param [in]  <buffer> what should it work with
+ *
+ * @return FileLog enum - code of error or FILE_OK
+ */
+FileLog file_preparation(char* buffer);
+
+/*!
+ * @brief Writes buffer in the outout file
+ *
+ * Ignores double spaces and double '\n'
+ * when writes buffer in output file
+ *
+ * @param [in] <buffer> string to write in
+ * @param [in] <output> path to output file
+ */
+FileLog preparation_write(const char* buffet, const char* output);
+
 #endif // TEXTIO_INClUDED

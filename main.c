@@ -23,7 +23,6 @@ int main(void) {
 
     /* CODE_CHECK(get_file_names(input_file, output_file), FILE_OK); */
 
-    input(&buffer, input_file);
     CODE_CHECK(input(&buffer, input_file), FILE_OK);
 
     size_t count = 0;

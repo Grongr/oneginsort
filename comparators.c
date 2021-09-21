@@ -4,7 +4,7 @@
 
 #include "comparators.h"
 
-const char* ignore = ",.\"\'?!:;";
+const char* ignore = ",.\"\'?!:;\t";
 
 int forward_cmp(const string* s1, const string* s2) {
 
