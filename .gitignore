@@ -2,3 +2,5 @@ cmake-build/
 file_preparation/input.txt
 file_preparation/output.txt
 file_preparation/cmake-build/
+test
+test.c

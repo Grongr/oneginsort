@@ -31,8 +31,8 @@ int main(void) {
 
     CODE_CHECK(clear(output_file), FILE_OK);
 
-    my_qsort(text, 0, count - 1,
-            (int(*) (const string*, const string*))forward_cmp);
+    my_qsort(text, 0, count - 1, sizeof(string),
+            (int(*) (const void*, const void*))forward_cmp);
 
     CODE_CHECK(write_result(text, count, output_file), FILE_OK);
 

@@ -1,7 +1,7 @@
 #ifndef TEXTIO_INClUDED
 #define TEXTIO_INClUDED
 
-#include <stdio.h>
+#include <stddef.h>
 
 /*!
  * @brief Funcs returns the code from this enum
@@ -57,6 +57,8 @@ FileLog input(char** buffer, const char* input_file);
  * @param [in]  <buffer> pointer to the beginning of buffer
  * @param [out] <count>  count of strings in buffer
  * @param [in]  <ch>     delimeter of strings in <buffer>
+ *
+ * @return parsed buffer as text
  *
  * @version 0.1
  */

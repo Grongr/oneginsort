@@ -19,11 +19,12 @@ FileLog input(char** buffer, const char *input_file) {
     struct stat information;
     stat(input_file, &information);
 
-    *buffer = (char*) calloc((size_t) information.st_size + 4ul, sizeof(char));
+    *buffer = (char*) calloc((size_t) information.st_size + 4UL, sizeof(char));
     if (*buffer == NULL)
         return NO_MEMORY;
 
-    size_t size = fread(*buffer, sizeof(char), (size_t) information.st_size, fin);
+    ssize_t size = fread(*buffer, sizeof(char),
+                         (size_t) information.st_size, fin);
 
     if (size < 0)
         return CANNOT_READ_FILE;
@@ -56,8 +57,8 @@ string* parser(char* buffer, size_t* count, char ch) {
         return NULL;
 
     iter = buffer;
-    char* last;
-    size_t length;
+    char*  last   = buffer;
+    size_t length = 0;
 
     for (int i = 0; i < *count; ++i) {
 
